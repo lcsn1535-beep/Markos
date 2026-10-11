@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0712">
+  <meta name="description" content="Marko AI – dein persönlicher KI-Assistent mit sicherem Login, Admin-Panel und optionalem Bildschirm-Modus.">
+  <title>Marko AI — Dein KI-Assistent</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <main id="boot-screen" class="boot-screen">
+    <div class="brand-mark large-mark">M<span>✦</span></div>
+    <div class="loader"></div>
+    <p>Marko wird gestartet …</p>
+  </main>
+
+  <section id="setup-screen" class="auth-screen hidden" aria-labelledby="setup-heading">
+    <div class="auth-art">
+      <div class="orb orb-a"></div><div class="orb orb-b"></div>
+      <div class="art-core"><div class="brand-mark massive-mark">M<span>✦</span></div></div>
+      <div class="art-caption"><span class="eyebrow">DEIN PERSÖNLICHER KI-SPACE</span><h1>Eine Idee.<br><span>Unendliche Möglichkeiten.</span></h1><p>Ein smarter Ort für deine Fragen, Projekte und Gedanken.</p></div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-panel-inner">
+        <div class="brand-lockup"><div class="brand-mark">M<span>✦</span></div><div><strong>marko<span>.ai</span></strong><small>PRIVATE INTELLIGENCE</small></div></div>
+        <div class="status-chip"><span class="status-dot"></span> ERSTEINRICHTUNG</div>
+        <h2 id="setup-heading">Willkommen bei Marko.</h2>
+        <p class="muted">Erstelle die 20 Zugangskonten für Chat und Bildschirm-Modus. Die Passwörter werden nur einmal angezeigt.</p>
+        <form id="setup-form" class="auth-form">
+          <label for="setup-token">Geheimer Einrichtungs-Code</label>
+          <input id="setup-token" name="token" type="password" autocomplete="current-password" placeholder="SETUP_TOKEN aus deiner .env-Datei" required minlength="16">
+          <button id="setup-button" class="primary-button full-button" type="submit"><span>20 Konten sicher erstellen</span><span aria-hidden="true">↗</span></button>
+          <p id="setup-error" class="form-error hidden" role="alert"></p>
+        </form>
+        <div id="credentials-result" class="credentials-result hidden">
+          <div class="success-mark">✓</div><h3>Marko ist eingerichtet</h3>
+          <p class="muted">Lade die Zugangsdaten herunter und bewahre sie sicher auf. Nicht in GitHub hochladen.</p>
+          <div class="credential-count"><strong>20</strong><span>Konten erstellt<br>10 Chat · 10 Bildschirm</span></div>
+          <button id="download-credentials" class="primary-button full-button" type="button">Zugangsdaten herunterladen <span>↓</span></button>
+          <button id="continue-to-login" class="ghost-button full-button" type="button">Weiter zum Login <span>→</span></button>
+          <p id="credentials-reminder" class="tiny-note">Die Passwörter werden nach dem Verlassen dieses Fensters nicht erneut angezeigt.</p>
+        </div>
+        <p class="auth-footnote"><span>◈</span> Geschützter Zugang · Zugangsdaten bleiben privat</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="login-screen" class="auth-screen hidden" aria-labelledby="login-heading">
+    <div class="auth-art">
+      <div class="orb orb-a"></div><div class="orb orb-b"></div>
+      <div class="art-core"><div class="brand-mark massive-mark">M<span>✦</span></div></div>
+      <div class="art-caption"><span class="eyebrow">DEIN PERSÖNLICHER KI-SPACE</span><h1>Eine Idee.<br><span>Unendliche Möglichkeiten.</span></h1><p>Ein smarter Ort für deine Fragen, Projekte und Gedanken.</p></div>
+      <div class="art-stats"><div><strong>01</strong><span>CHAT</span></div><i></i><div><strong>02</strong><span>SCREEN AI</span></div><i></i><div><strong>03</strong><span>CREATE</span></div></div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-panel-inner">
+        <div class="brand-lockup"><div class="brand-mark">M<span>✦</span></div><div><strong>marko<span>.ai</span></strong><small>PRIVATE INTELLIGENCE</small></div></div>
+        <div class="status-chip"><span class="status-dot"></span> <span id="login-mode-label">SICHERER CHAT-ZUGANG</span></div>
+        <h2 id="login-heading">Schön, dass du da bist.</h2>
+        <p id="login-subtitle" class="muted">Melde dich an und mach aus deinen Ideen etwas Großes.</p>
+        <form id="login-form" class="auth-form">
+          <label for="login-username">Benutzername</label>
+          <div class="input-wrap"><span class="input-icon" aria-hidden="true">◉</span><input id="login-username" name="username" autocomplete="username" placeholder="Dein Benutzername" required maxlength="80"></div>
+          <label for="login-password">Passwort</label>
+          <div class="input-wrap"><span class="input-icon" aria-hidden="true">⌑</span><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Dein Passwort" required><button class="password-toggle" id="toggle-password" type="button" aria-label="Passwort anzeigen">◉</button></div>
+          <button id="login-button" class="primary-button full-button" type="submit"><span>Anmelden</span><span aria-hidden="true">↗</span></button>
+          <p id="login-error" class="form-error hidden" role="alert"></p>
+        </form>
+        <div class="mode-switch-card"><div class="mode-switch-icon">⌘</div><div><strong id="mode-switch-title">Du möchtest deinen Bildschirm nutzen?</strong><p id="mode-switch-description">Der Screen-Modus nutzt separate Zugangsdaten und deine ausdrückliche Freigabe.</p><button id="switch-login-mode" class="text-button" type="button">Zum Bildschirm-Modus <span>→</span></button></div></div>
+        <p class="auth-footnote"><span>◈</span> Verschlüsselte Verbindung empfohlen · Nie Passwörter teilen</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="app-shell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><div class="brand-mark">M<span>✦</span></div><div><strong>marko<span>.ai</span></strong><small>PERSONAL AI</small></div><button class="icon-button sidebar-close" id="close-sidebar" type="button" aria-label="Menü schließen">×</button></div>
+      <button id="new-chat" class="new-chat-button" type="button"><span class="new-chat-plus">＋</span> Neuer Chat <kbd>⌘ K</kbd></button>
+      <div class="sidebar-section-label">DEIN WORKSPACE</div>
+      <button class="nav-item active" id="nav-chat" type="button"><span class="nav-icon">✧</span><span>KI-Chat</span><span class="nav-trailing-dot"></span></button>
+      <button class="nav-item" id="nav-screen" type="button"><span class="nav-icon">▣</span><span>Bildschirm-Modus</span><span class="nav-arrow">↗</span></button>
+      <div class="sidebar-section-label history-label">LETZTE CHATS <button id="clear-history" class="mini-icon-button" type="button" title="Chatliste löschen" aria-label="Chatliste löschen">⌫</button></div>
+      <div id="history-list" class="history-list"><p class="history-empty">Deine Unterhaltungen erscheinen hier.</p></div>
+      <div class="sidebar-bottom">
+        <div class="plan-card"><div class="plan-glow"></div><span class="plan-tag">MARKO CORE</span><strong>Dein Raum. Deine Ideen.</strong><p>Eine KI für deinen Alltag und deine Projekte.</p><div class="plan-line"><span></span></div></div>
+        <button id="change-password-open" class="account-row" type="button"><div class="avatar-small" id="sidebar-avatar">M</div><div class="account-copy"><strong id="sidebar-username">Account</strong><span id="sidebar-role">Mitglied</span></div><span class="account-settings">⚙</span></button>
+      </div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="open-sidebar" type="button" aria-label="Menü öffnen">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong id="topbar-context">KI-Chat</strong></div>
+        <div class="topbar-actions"><div class="model-chip"><span class="model-pulse"></span><span id="model-chip-label">MARKO AI</span></div><button id="top-mode-toggle" class="mode-top-button" type="button" title="Zum anderen Modus wechseln"><span aria-hidden="true">▣</span><span id="top-mode-label" class="top-mode-label">Bildschirm-Modus</span></button><button id="admin-open" class="admin-button hidden" type="button"><span>◈</span> Admin Panel</button><button id="logout-button" class="logout-button" type="button" title="Abmelden">Abmelden <span>↗</span></button></div>
+      </header>
+      <div id="ai-warning" class="ai-warning hidden"><span>ⓘ</span><div><strong>KI noch nicht verbunden</strong><p>Der Server-Admin muss den OPENAI_API_KEY in den Hosting-Einstellungen setzen.</p></div></div>
+      <main id="chat-view" class="chat-view">
+        <div id="chat-scroll" class="chat-scroll">
+          <section id="welcome-state" class="welcome-state">
+            <div class="welcome-symbol"><div class="welcome-ring ring-one"></div><div class="welcome-ring ring-two"></div><div class="welcome-m">M<span>✦</span></div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span><span class="spark spark-three">·</span></div>
+            <div class="welcome-pill"><span class="status-dot"></span> DEIN KI-ASSISTENT IST BEREIT</div>
+            <h1>Hey, was liegt dir<br><span>heute im Kopf?</span></h1>
+            <p class="welcome-copy">Idee im Kopf? Frage auf der Zunge? Lass uns etwas Gutes daraus machen.</p>
+            <div class="suggestion-grid">
+              <button class="suggestion-card" type="button" data-prompt="Hilf mir, eine richtig gute Idee für ein eigenes Projekt zu entwickeln."><span class="suggestion-icon purple-icon">✧</span><strong>Ideen entwickeln</strong><span>Aus einem Gedanken wird ein Plan <b>↗</b></span></button>
+              <button class="suggestion-card" type="button" data-prompt="Erkläre mir ein schwieriges Thema einfach, verständlich und mit einem Beispiel."><span class="suggestion-icon blue-icon">⌘</span><strong>Etwas verstehen</strong><span>Komplexes einfach erklärt <b>↗</b></span></button>
+              <button class="suggestion-card" type="button" data-prompt="Hilf mir, eine moderne Website zu programmieren. Erstelle einen Plan und starte mit sauberem Code."><span class="suggestion-icon pink-icon">⌁</span><strong>Etwas erschaffen</strong><span>Code, Design und Kreativität <b>↗</b></span></button>
+              <button class="suggestion-card" type="button" data-prompt="Stelle mir 5 Fragen, um meinen Alltag besser zu organisieren, und erstelle anschließend einen konkreten Plan."><span class="suggestion-icon amber-icon">◷</span><strong>Mehr Überblick</strong><span>Pläne, Ziele und Struktur <b>↗</b></span></button>
+            </div>
+          </section>
+          <div id="messages" class="messages hidden" aria-live="polite"></div>
+          <div id="typing-indicator" class="typing-indicator hidden"><div class="assistant-avatar">M<span>✦</span></div><div class="typing-bubble"><span></span><span></span><span></span><small>Marko denkt nach …</small></div></div>
+        </div>
+        <div class="composer-wrap">
+          <form id="chat-form" class="composer">
+            <textarea id="chat-input" rows="1" maxlength="10000" placeholder="Schreib Marko eine Nachricht …" aria-label="Nachricht an Marko"></textarea>
+            <div class="composer-footer"><div class="composer-hints"><span class="composer-status-dot"></span><span>Marko kann sich irren. Prüfe wichtige Informationen.</span></div><div class="composer-controls"><span class="keyboard-hint">↵ Senden</span><button id="send-button" class="send-button" type="submit" aria-label="Nachricht senden"><span>↑</span></button></div></div>
+          </form>
+          <p class="composer-disclaimer">Deine Chat-Historie wird in diesem Browser gespeichert, nicht in deinem Benutzerkonto.</p>
+        </div>
+      </main>
+
+      <main id="screen-view" class="screen-view hidden">
+        <div class="screen-heading"><div><div class="welcome-pill"><span class="status-dot"></span> SCREEN AI · SEPARATER ZUGANG</div><h1>Marko sieht,<br><span>was du freigibst.</span></h1><p>Teile deinen Bildschirm bewusst und frage Marko nach Hilfe bei dem, was du gerade machst.</p></div><div class="screen-orb"><span>▣</span><i></i><i></i></div></div>
+        <div class="privacy-banner"><span class="privacy-icon">◈</span><div><strong>Du hast die Kontrolle.</strong><p>Dein Bildschirm wird nicht heimlich überwacht oder kontinuierlich übertragen. Marko bekommt einen Screenshot erst, wenn du ihn unten ausdrücklich mitsendest. Dieser Screenshot wird an den KI-Anbieter übermittelt.</p></div></div>
+        <div class="screen-workspace">
+          <section class="screen-share-card"><div class="section-topline"><div><span class="section-overline">01 / SCREEN SHARE</span><h2>Dein Bildschirm</h2></div><span id="share-state" class="share-status"><i></i> Nicht geteilt</span></div><div id="screen-preview-wrap" class="screen-preview-wrap"><div id="screen-placeholder" class="screen-placeholder"><div class="screen-placeholder-icon">▣</div><strong>Noch kein Bildschirm freigegeben</strong><span>Starte eine Freigabe, um Marko einen Ausschnitt zu zeigen.</span></div><video id="screen-video" class="hidden" autoplay playsinline muted></video><div class="preview-corner preview-corner-tl"></div><div class="preview-corner preview-corner-br"></div></div><div class="share-controls"><button id="start-share" class="primary-button" type="button"><span>▣</span> Bildschirm freigeben</button><button id="stop-share" class="ghost-button hidden" type="button">Freigabe beenden</button></div><p class="screen-footnote">Der Browser fragt dich nach dem Bildschirm, Fenster oder Tab, den du teilen willst.</p></section>
+          <section class="screen-chat-card"><div class="section-topline"><div><span class="section-overline">02 / ASK MARKO</span><h2>Wobei brauchst du Hilfe?</h2></div><div class="assistant-avatar">M<span>✦</span></div></div><div class="screen-chat-content"><p class="screen-intro">Beschreibe dein Ziel. Wenn die Bildschirmfreigabe aktiv ist, kannst du den aktuellen Ausschnitt zusammen mit deiner Frage senden.</p><div id="screen-messages" class="screen-messages"><div class="screen-empty-message"><span>✧</span><p>Zum Beispiel: „Was muss ich hier anklicken?“ oder „Erkläre mir diesen Fehler.“</p></div></div><form id="screen-form" class="screen-composer"><textarea id="screen-input" rows="3" maxlength="10000" placeholder="Was soll Marko dir erklären?" aria-label="Frage zum Bildschirm"></textarea><div class="screen-send-row"><label class="include-screenshot"><input id="include-screenshot" type="checkbox" checked><span class="custom-check">✓</span> Screenshot mitsenden</label><button id="screen-send-button" class="primary-button" type="submit">Frage senden <span>↑</span></button></div></form><p class="screen-footnote screen-privacy-line">⌑ Teile keine Passwörter oder vertraulichen Inhalte, wenn es nicht nötig ist.</p></div></section>
+        </div>
+      </main>
+      <footer class="app-footer"><span>MARKO AI <i>•</i> BUILT FOR CURIOSITY</span><span id="footer-mode">PERSONAL WORKSPACE</span></footer>
+    </div>
+  </section>
+
+  <div id="modal-backdrop" class="modal-backdrop hidden" role="presentation">
+    <section id="admin-modal" class="modal-panel hidden" role="dialog" aria-modal="true" aria-labelledby="admin-title"><div class="modal-header"><div><span class="section-overline">CONTROL CENTER</span><h2 id="admin-title">Admin Panel</h2><p>Konten verwalten und den Status deiner Instanz prüfen.</p></div><button class="icon-button modal-close" data-close-modal type="button" aria-label="Schließen">×</button></div><div id="admin-summary" class="admin-summary"></div><div class="admin-filter-row"><div class="admin-tabs"><button class="admin-tab active" data-admin-filter="all" type="button">Alle Konten</button><button class="admin-tab" data-admin-filter="chat" type="button">Chat</button><button class="admin-tab" data-admin-filter="screen" type="button">Screen</button></div><button id="admin-refresh" class="ghost-button small-ghost" type="button">↻ Aktualisieren</button></div><div id="admin-notice" class="admin-notice hidden" role="status"></div><div id="admin-users" class="admin-users"></div><div class="audit-area"><div class="section-overline">LETZTE AKTIVITÄTEN</div><div id="audit-list" class="audit-list"></div></div></section>
+    <section id="password-modal" class="modal-panel compact-modal hidden" role="dialog" aria-modal="true" aria-labelledby="password-title"><div class="modal-header"><div><span class="section-overline">ACCOUNT SECURITY</span><h2 id="password-title">Passwort ändern</h2><p>Nutze ein einzigartiges Passwort mit mindestens 12 Zeichen.</p></div><button class="icon-button modal-close" data-close-modal type="button" aria-label="Schließen">×</button></div><form id="password-form" class="auth-form"><label for="current-password">Aktuelles Passwort</label><input id="current-password" type="password" autocomplete="current-password" required><label for="new-password">Neues Passwort</label><input id="new-password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><label for="confirm-password">Neues Passwort wiederholen</label><input id="confirm-password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><p id="password-message" class="form-error hidden" role="alert"></p><button id="password-submit" class="primary-button full-button" type="submit">Passwort speichern <span>↗</span></button></form></section>
+    <section id="reset-modal" class="modal-panel compact-modal hidden" role="dialog" aria-modal="true" aria-labelledby="reset-title"><div class="modal-header"><div><span class="section-overline">ONE-TIME SECRET</span><h2 id="reset-title">Neues Passwort</h2><p id="reset-description">Dieses Passwort wird nur einmal angezeigt.</p></div><button class="icon-button modal-close" data-close-modal type="button" aria-label="Schließen">×</button></div><div class="one-time-password"><label for="reset-password-value">Temporäres Passwort</label><div class="copy-password-line"><input id="reset-password-value" readonly><button id="copy-reset-password" class="ghost-button" type="button">Kopieren</button></div></div><p class="tiny-note">Übergib es sicher. Die Person sollte sich anmelden und ihr Passwort anschließend ändern.</p><button class="primary-button full-button" data-close-modal type="button">Fertig</button></section>
+  </div>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

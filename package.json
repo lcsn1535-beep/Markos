@@ -1,0 +1,23 @@
+{
+  "name": "marko-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marko AI – geschützter KI-Chat mit getrenntem Bildschirm-Modus und Admin-Panel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "openai": "^5.20.0"
+  }
+}
